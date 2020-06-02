@@ -1,0 +1,7 @@
+input[type="checkbox"] {
+  position: relative;
+  top: -7px;
+  left: 77px;
+  width: 15px;
+  height: 15px;
+}

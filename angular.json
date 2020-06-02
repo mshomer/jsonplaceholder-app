@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "users-app": {
+    "jsonplaceholder-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,20 +13,21 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/users-app",
+            "outputPath": "dist/jsonplaceholder-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -62,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "users-app:build"
+            "browserTarget": "jsonplaceholder-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "users-app:build:production"
+              "browserTarget": "jsonplaceholder-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "users-app:build"
+            "browserTarget": "jsonplaceholder-app:build"
           }
         },
         "test": {
@@ -83,14 +84,15 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           }
         },
         "lint": {
@@ -101,24 +103,23 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "users-app:serve"
+            "devServerTarget": "jsonplaceholder-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "users-app:serve:production"
+              "devServerTarget": "jsonplaceholder-app:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "users-app"
+    }
+  },
+  "defaultProject": "jsonplaceholder-app"
 }

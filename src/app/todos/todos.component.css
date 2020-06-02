@@ -1,0 +1,16 @@
+.fa-edit {
+  color: #404e67;
+  font-size: 3rem;
+}
+.fa-edit:hover {
+  color: #403e3e;
+}
+
+.media-body {
+  color: #404e67;
+}
+
+.card {
+  margin: 0.5rem;
+  margin-left: 0;
+}

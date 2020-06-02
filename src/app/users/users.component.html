@@ -1,0 +1,76 @@
+<div *ngIf="!user">
+  <h4>Search Users</h4>
+  <div class="row mb-3">
+    <div class="col-lg-10 col-md-9 col-sm-8">
+      <div class="form-group">
+        <input
+          type="text"
+          name="search"
+          [(ngModel)]="search"
+          class="form-control"
+          placeholder="Search User..."
+        />
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-4 text-right">
+      <button
+        type="button"
+        class="btn btn-primary btn-md"
+        (click)="CreateNew()"
+      >
+        Create New
+      </button>
+    </div>
+  </div>
+
+  <div class="overflow" *ngIf="users">
+    <div *ngFor="let user of users | filterUsers: search">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="well">
+            <div>
+              <h4 class="btn-link" (click)="EditUser(user.id)">
+                {{ user.name }}
+              </h4>
+              <div>
+                <strong>Address: </strong>
+                <span
+                  >{{ user.address.street }}, {{ user.address.suite }},
+                  {{ user.address.city }}</span
+                >
+              </div>
+              <div>
+                <a class="mr-3" routerLink="/users/{{ user.id }}/posts"
+                  ><div class="badge badge-primary text-wrap">
+                    Posts
+                  </div></a
+                >
+                <a routerLink="/users/{{ user.id }}/todos"
+                  ><div class="badge badge-primary text-wrap">
+                    Todos
+                  </div></a
+                >
+              </div>
+            </div>
+            <div>
+              <button
+                class="btn btn-primary rounded-circle"
+                (click)="EditUser(user.id)"
+              >
+                <i class="fa fa-edit"></i>
+              </button>
+              <button
+                class="btn btn-danger rounded-circle"
+                (click)="DeleteUser(user)"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-user-details [user]="user" (notify)="getNotify($event)"></app-user-details>

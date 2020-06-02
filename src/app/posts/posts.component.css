@@ -1,0 +1,58 @@
+.well {
+  display: inline-flex;
+  flex-direction: column;
+  width: 400px;
+  height: 100%;
+  padding-bottom: 20px;
+}
+
+.well .title {
+  border: 1px solid #dadada;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  padding: 10px;
+  background-color: #ff214f;
+  color: #fff;
+}
+
+.well .body {
+  border: 1px solid #dadada;
+  border-top: 0;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 100%;
+  padding: 10px;
+}
+
+.well .body .btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+  color: #ff214f;
+  border-color: #ff214f;
+  border-radius: 50px;
+}
+
+.well .body .btn:hover,
+.well .body .btn:focus {
+  color: white;
+  background-color: #ff214f;
+}

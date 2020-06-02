@@ -1,0 +1,15 @@
+.badge {
+  width: 4rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  margin-top: 5px;
+}
+
+.badge:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}

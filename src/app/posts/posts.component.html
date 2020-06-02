@@ -1,0 +1,61 @@
+<div class="loading" *ngIf="!posts"><div></div></div>
+<div *ngIf="!post && posts">
+  <h4>
+    {{ user ? user.name : "Search Posts" }}
+  </h4>
+  <div class="row mb-3">
+    <div
+      [ngClass]="{
+        'col-lg-10': user,
+        'col-md-9': user,
+        'col-sm-8': user,
+        'col-12': !user
+      }"
+    >
+      <div class="form-group">
+        <input
+          type="text"
+          name="search"
+          [(ngModel)]="search"
+          class="form-control"
+          placeholder="Search Post..."
+        />
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-4 text-right" *ngIf="user">
+      <button
+        type="button"
+        class="btn btn-primary btn-md"
+        (click)="CreateNew()"
+      >
+        Create New
+      </button>
+    </div>
+  </div>
+
+  <div class="overflow" *ngIf="posts">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let post of posts | filterPosts: search">
+        <div class="well">
+          <div class="title">
+            <h5>
+              {{ post.title }}
+            </h5>
+          </div>
+          <div class="body">
+            <p>
+              {{ post.body }}
+            </p>
+            <div class="w-100 text-center mb-2">
+              <a (click)="EditPost(post.id)" class="btn"
+                ><i class="fa fa-edit pr-1"></i>Edit</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-post-details [post]="post" (notify)="getNotify($event)"></app-post-details>

@@ -1,0 +1,77 @@
+<div *ngIf="post != null">
+  <h3 *ngIf="post.id != -1">Edit Post</h3>
+  <h3 *ngIf="post.id == -1">Create Post</h3>
+  <br />
+  <form #frm="ngForm" novalidate (ngSubmit)="submitData(frm.valid)">
+    <div class="form-group">
+      <textarea
+        customHover
+        size="100"
+        col="20"
+        row="8"
+        name="title"
+        required
+        #title="ngModel"
+        class="form-control"
+        [(ngModel)]="post.title"
+      ></textarea>
+      <label for="title">Title</label>
+    </div>
+    <div class="form-group">
+      <textarea
+        customHover
+        size="200"
+        col="20"
+        row="8"
+        name="body"
+        required
+        #body="ngModel"
+        class="form-control"
+        [(ngModel)]="post.body"
+      ></textarea>
+      <label for="body">Body</label>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-success"
+      *ngIf="post.id != -1"
+      [disabled]="frm.invalid"
+      (click)="action = 1"
+    >
+      Update
+    </button>
+    <button
+      type="submit"
+      class="btn btn-danger"
+      *ngIf="post.id != -1"
+      [disabled]="frm.invalid"
+      (click)="action = 2"
+    >
+      Delete
+    </button>
+    <button
+      type="submit"
+      class="btn btn-success"
+      *ngIf="post.id == -1"
+      [disabled]="frm.invalid"
+      (click)="action = 3"
+    >
+      Create
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary btn-md"
+      (click)="notify.emit(4)"
+    >
+      Back
+    </button>
+
+    <div *ngIf="title.errors && title.errors.required && title.touched">
+      Title is required
+    </div>
+    <div *ngIf="body.errors && body.errors.required && body.touched">
+      Body is required
+    </div>
+  </form>
+</div>

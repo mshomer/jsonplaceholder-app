@@ -1,0 +1,76 @@
+<div class="loading" *ngIf="!todos"><div></div></div>
+<div *ngIf="!todo && todos">
+  <h4>
+    {{ user ? user.name : "Search To Do" }}
+  </h4>
+  <div class="row mb-3">
+    <div
+      [ngClass]="{
+        'col-lg-10': user,
+        'col-md-9': user,
+        'col-sm-8': user,
+        'col-12': !user
+      }"
+    >
+      <div class="form-group">
+        <input
+          type="text"
+          name="search"
+          [(ngModel)]="search"
+          class="form-control"
+          placeholder="Search To Do..."
+        />
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-4 text-right" *ngIf="user">
+      <button
+        type="button"
+        class="btn btn-primary btn-md"
+        (click)="CreateNew()"
+      >
+        Create New
+      </button>
+    </div>
+  </div>
+
+  <div class="overflow" *ngIf="todos">
+    <div *ngFor="let todo of todos | filterTodos: search">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card overflow-hidden">
+            <div class="card-content">
+              <div class="card-body cleartfix">
+                <div class="media align-items-stretch">
+                  <div class="media-body">
+                    <h4>{{ todo.title }}</h4>
+                    <div *ngIf="todo['userName']">
+                      <strong>User: </strong>{{ todo["userName"] }}
+                    </div>
+                    <div>
+                      <strong>Completed: </strong>
+                      <i
+                        class="fa"
+                        [class.fa-check]="todo.completed"
+                        [class.fa-remove]="!todo.completed"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="align-self-center">
+                    <a (click)="EditTodo(todo.id)" class="btn"
+                      ><i class="fa fa-edit"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-todos-details
+  [todo]="todo"
+  (notify)="getNotify($event)"
+></app-todos-details>

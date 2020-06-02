@@ -1,0 +1,253 @@
+<div *ngIf="user">
+  <h3 *ngIf="user.id != -1">Edit User</h3>
+  <h3 *ngIf="user.id == -1">Create User</h3>
+  <br />
+  <form #frm="ngForm" novalidate (ngSubmit)="submitData(frm.valid)">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <input
+            type="text"
+            name="name"
+            required
+            #name="ngModel"
+            class="form-control"
+            [(ngModel)]="user.name"
+          />
+          <label for="name">Full Name</label>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="username"
+            required
+            #username="ngModel"
+            class="form-control"
+            [(ngModel)]="user.username"
+          />
+          <label for="username">User Name</label>
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            required
+            #email="ngModel"
+            class="form-control"
+            [(ngModel)]="user.email"
+          />
+          <label for="email">Email Address</label>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <input
+            type="text"
+            name="phone"
+            required
+            #phone="ngModel"
+            class="form-control"
+            [(ngModel)]="user.phone"
+          />
+          <label for="phone">Phone</label>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="website"
+            required
+            #website="ngModel"
+            class="form-control"
+            [(ngModel)]="user.website"
+          />
+          <label for="website">Website</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="panel panel-default">
+        <div class="panel-heading mb-2">Address</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="street"
+                  required
+                  #street="ngModel"
+                  class="form-control"
+                  [(ngModel)]="user.address.street"
+                />
+                <label for="street">Street</label>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="suite"
+                  required
+                  #suite="ngModel"
+                  class="form-control"
+                  [(ngModel)]="user.address.suite"
+                />
+                <label for="suite">Suite</label>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="city"
+                  required
+                  #city="ngModel"
+                  class="form-control"
+                  [(ngModel)]="user.address.city"
+                />
+                <label for="city">City</label>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="zipcode"
+                  required
+                  #zipcode="ngModel"
+                  class="form-control"
+                  [(ngModel)]="user.address.zipcode"
+                />
+                <label for="zipcode">Zip Code</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="panel panel-default">
+                <div class="panel-heading mb-2">GEO</div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="lat"
+                          required
+                          #lat="ngModel"
+                          class="form-control"
+                          [(ngModel)]="user.address.geo.lat"
+                        />
+                        <label for="lat">Latitude</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="lng"
+                          required
+                          #lng="ngModel"
+                          class="form-control"
+                          [(ngModel)]="user.address.geo.lng"
+                        />
+                        <label for="lng">Longitude</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading mb-2">Company</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <input
+                type="text"
+                name="name"
+                required
+                #name="ngModel"
+                class="form-control"
+                [(ngModel)]="user.company.name"
+              />
+              <label for="name">Name</label>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <input
+                type="text"
+                name="catchPhrase"
+                required
+                #catchPhrase="ngModel"
+                class="form-control"
+                [(ngModel)]="user.company.catchPhrase"
+              />
+              <label for="catchPhrase">Catch Phrase</label>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <input
+                type="text"
+                name="bs"
+                required
+                #bs="ngModel"
+                class="form-control"
+                [(ngModel)]="user.company.bs"
+              />
+              <label for="bs">bs</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-success"
+      *ngIf="user.id != -1"
+      [disabled]="frm.invalid"
+      (click)="action = 1"
+    >
+      Update
+    </button>
+    <button
+      type="submit"
+      class="btn btn-danger"
+      *ngIf="user.id != -1"
+      [disabled]="frm.invalid"
+      (click)="action = 2"
+    >
+      Delete
+    </button>
+    <button
+      type="submit"
+      class="btn btn-success"
+      *ngIf="user.id == -1"
+      [disabled]="frm.invalid"
+      (click)="action = 3"
+    >
+      Create
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary btn-md"
+      (click)="notify.emit(4)"
+    >
+      Back
+    </button>
+    <hr />
+
+    <div *ngIf="name.errors && name.errors.required && name.touched">
+      Full Name is required
+    </div>
+    <div *ngIf="email.errors && email.errors.required && email.touched">
+      Email is required
+    </div>
+  </form>
+</div>
